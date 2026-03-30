@@ -1,0 +1,41 @@
+---
+- name: Обновление пакетов Ubuntu и создание файла
+  hosts: all
+  become: yes
+  vars:
+    target_user: "{{ ansible_user }}"  # Или укажите конкретного пользователя
+    file_path: "~/update_status.txt"
+    file_content: "Обновлено"
+
+  tasks:
+    # Обновление кэша apt
+    - name: Обновление кэша apt
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    # Обновление всех пакетов
+    - name: Обновление всех пакетов
+      apt:
+        upgrade: dist
+        autoremove: yes
+        autoclean: yes
+
+    # Создание файла в домашней директории пользователя
+    - name: Создание файла с текстом "Обновлено"
+      copy:
+        content: "{{ file_content }}\n"
+        dest: "{{ file_path }}"
+        owner: "{{ target_user }}"
+        group: "{{ target_user }}"
+        mode: '0644'
+      become: yes
+      become_user: "{{ target_user }}"
+
+    # Вывод информации о результате
+    - name: Вывод информации о созданном файле
+      debug:
+        msg: 
+          - "Пакеты успешно обновлены"
+          - "Файл создан: {{ file_path }}"
+          - "Содержимое файла: {{ file_content }}"
