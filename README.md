@@ -11,7 +11,9 @@ Ansible-проект для управления серверами Ubuntu.
 │   ├── staging.ini      # Тестовые серверы
 │   └── group_vars/      # Переменные для групп
 ├── playbooks/           # Плейбуки Ansible
-├── roles/               # Роли Ansible
+│   ├── site.yml         # Главный плейбук
+│   ├── update_ubuntu.yml # Обновление Ubuntu
+│   └── install_sudo.yml  # Установка sudo
 ├── group_vars/          # Глобальные переменные
 └── host_vars/           # Переменные для отдельных хостов
 ```

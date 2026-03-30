@@ -2,5 +2,4 @@
 - name: Обновление всех серверов
   hosts: all
   become: yes
-  roles:
-    - system_update
+  import_playbook: update_ubuntu.yml
