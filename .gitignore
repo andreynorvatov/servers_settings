@@ -8,15 +8,28 @@ roles/
 !site.yml
 
 # --- Локальные настройки и секреты ---
-*.env
 .env
 group_vars/*.vault.yml
 host_vars/*.vault.yml
 inventory/*.ini
 !inventory/example.ini
 
-# --- Временные файлы ---
+# --- Python ---
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+
+# --- Vagrant ---
 .vagrant/
+
+# --- Временные файлы ---
 .tmp/
+*.swp
+*.swo
+*~
+
+# --- IDE ---
+.idea/
+.vscode/
+*.iml

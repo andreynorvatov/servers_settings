@@ -1,0 +1,6 @@
+---
+- name: Обновление всех серверов
+  hosts: all
+  become: yes
+  roles:
+    - system_update
